@@ -1,0 +1,26 @@
+{
+  "name": "Brevis",
+  "autoload": {
+    "psr-4": {
+      "Brevis\\": "core/"
+    }
+  },
+  "require": {
+    "php": ">=5.3.0",
+    "fenom/fenom": "2.*",
+    "xpdo/xpdo": "3.0.*@dev",
+    "erusev/parsedown": "1.5.*",
+    "amstaffix/pagination": "^1.1",
+    "phpmailer/phpmailer": "^5.2",
+    "monolog/monolog": "^1.20",
+    "stadline/monolog-echo-handler": "^0.2.0",
+    "meenie/Munee": "*",
+    "picqer/php-barcode-generator": "^0.2.0",
+    "phpoffice/phpexcel": "^1.8",
+    "hybridauth/hybridauth": "2.8.2"
+  },
+  "scripts": {
+    "post-install-cmd": "\\Brevis\\Core::cleanPackages",
+    "post-update-cmd": "\\Brevis\\Core::cleanPackages"
+  }
+}

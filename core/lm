@@ -1,0 +1,4 @@
+#!/bin/bash
+#clear cache & update last-modified time
+
+php -f Clearcache.php

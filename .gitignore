@@ -1,0 +1,9 @@
+.idea
+/robots.txt
+/*.html
+vendor/
+composer.phar
+composer.lock
+config.inc.php
+config.hauth.inc.php
+/core/Templates/__base.tpl

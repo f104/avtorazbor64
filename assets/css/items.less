@@ -1,0 +1,253 @@
+.items-list {
+  .list-unstyled;
+  font-size: 16px;
+  line-height: 20px;
+  li {
+    padding: @line-height-computed / 2 0;
+    -moz-column-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
+  }
+  &.marks {
+    li a {
+      .link-clear;
+      i {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      span {
+        border-bottom: 1px solid rgba(5,102,59,0.3);  
+      }
+      &:hover,
+      &:focus {
+        span {
+          color: @link-hover-color;
+          border-bottom-color: rgba(1,29,17,.5);
+        }
+      }
+    }
+  }
+}
+@media (min-width: 800px) {
+  .items-list {
+    -moz-columns: 2;
+    -webkit-columns: 2;
+    columns: 2;
+  }
+}
+
+#cars_nav_form {
+  select {
+    .input-sm; .form-control;
+  }
+  a, button {
+    .btn; .btn-default; .btn-sm; 
+  }
+  > *, a, button {
+    margin-bottom: @line-height-computed / 2;
+  }
+}
+@media (min-width: @menu-collapse) {
+  #cars_nav_form {
+    display: flex;
+    > * {
+      margin-left: 10px;
+      margin-bottom: 0;
+      &:first-child {
+        margin-left: 0;
+      }
+    }  
+  }
+}
+
+/* items table */
+.items-table {
+  list-style-type: none;
+  padding: 0;
+}
+.items-table li {
+  margin-bottom: 20px;
+  border: 1px solid #e5e5e5;
+  padding: @line-height-computed @line-height-computed 0;
+  .price {
+    font-weight: bold;
+    white-space: nowrap;
+    color: @brand-primary;
+  }
+}
+.items-table_header {
+  display: none;
+}
+@media (min-width: @menu-collapse) {
+  .items-table {
+    display: table;
+    width: 100%;
+  }
+  .items-table li {
+    display: table-row;
+    margin-bottom: 0;
+    border: none;
+    padding: 0;
+    > div {
+      display: table-cell;
+      vertical-align: top;
+      padding: @line-height-computed @line-height-computed @line-height-computed 0;
+      border-bottom: 1px solid #e5e5e5;
+      h3 {
+        margin-top: 0;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      &:first-child { // ячейка с фото
+        width: 120px;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+    &.items-table_header {
+      .bg-info;
+      > div {
+        padding-top: @line-height-computed/2;
+        padding-bottom: @line-height-computed/2;
+      }
+    }
+  }
+  .items-table-hidden {
+    display: none;
+  }
+}
+.items-table, .items-list {
+  margin-bottom: 20px;
+}
+/* gallery*/
+.popup-gallery, .popup-gallery-item, .admin-image-gallery {
+  img {
+    max-width: 120px;
+    max-height: 90px;
+  }
+}
+.popup-gallery {
+  width: 120px;
+  height: 90px;
+  display: block;
+  position: relative;
+  a {
+    .link-clear;
+    display: none;
+    &:first-of-type {
+      display: inline;
+    }
+  }
+  span {
+    // photo counter
+    .badge;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+  }
+  div {
+    // empty gallery
+    background-color: @gray-lighter;
+    color: @gray-light;
+    height: 100%;
+    text-align: center;
+    .small;
+    padding: 25% 0;
+  }
+}
+
+.popup-gallery-item {
+  a {
+    .link-clear;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+  }
+  div {
+    // empty gallery
+    background-color: @gray-lighter;
+    color: @gray-light;
+    height: 100%;
+    text-align: center;
+    .small;
+    padding: 25% 0;
+  }
+}
+
+/* галерея в админке */
+.admin-image-gallery {
+  .list-inline;
+  position: relative;
+  li {
+    position: relative;
+    margin-bottom: @line-height-computed / 2;
+    button {
+      .btn; .btn-danger; .btn-xs;
+      position: absolute;
+      right: 5px;
+      bottom: 0;
+    }
+    > i {
+      position: absolute;
+      bottom: 0;
+      left: 5px;
+      background: rgba(0, 137, 65, .8);
+      color: white;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: move;
+    }
+  }
+}
+
+/* draggable */
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute !important;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+li.placeholder {
+  position: relative;
+  &::before {
+    position: absolute;
+  }
+}
+
+.sticker {
+  /*font-family: @font-family-sans-serif;*/
+  img {
+    max-width: 100%;
+  }
+}
+@media print {
+  .sticker {
+    max-width: 50%;
+    page-break-inside: avoid;
+    float: left;
+  }
+}
+@page {
+  margin: 1cm;
+}
+
+.payment-form {
+  margin-bottom: 0;
+}
+
+// запрос фото
+.item-nophoto {
+  display: inline-block;
+  position: relative;
+  button {
+    position: absolute;
+    top: 64px;
+    left: 10px;
+    padding: 0 5px;
+  }
+}

@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="Brevis\Model" platform="mysql" defaultEngine="MyISAM" version="3.0">
+
+  <object class="Category" table="category" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="key" dbtype="varchar" phptype="string" precision="1" null="false" default="" />
+    <field key="name" dbtype="varchar" phptype="string" precision="500" null="false" default="" />
+    <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+      <column key="key" length="" collation="A" null="false" />
+    </index>
+    <composite alias="Elements" class="\Brevis\Model\Element" local="key" foreign="category_key" cardinality="many" owner="local" />
+  </object>
+
+  <object class="Element" table="element" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="category_key" dbtype="varchar" phptype="string" precision="1" null="false" default="" />
+    <field key="key" dbtype="varchar" phptype="string" precision="4" null="false" default="" />
+    <field key="name" dbtype="varchar" phptype="string" precision="500" null="false" default="" />
+    <field key="increase_category" dbtype="int" phptype="integer" precision="10" null="false" default="1" />
+    <field key="increase_category_id" dbtype="int" phptype="integer" precision="10" null="false" default="1" />
+    <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+      <column key="key" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Increas" class="\Brevis\Model\Increase" local="increase_category_id" foreign="id" cardinality="one" />
+    <aggregate alias="Category" class="\Brevis\Model\Category" local="category_key" foreign="key" cardinality="one" owner="foreign" />
+  </object>
+
+  <object class="BodyType" table="body_types" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="100" null="false" default="" />
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+  </object>
+  
+  <object class="Increase" table="increase_categories" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="increase" dbtype="int" phptype="integer" precision="10" attributes="unsigned" null="false" />
+    <field key="allow_remove" dbtype="tinyint" phptype="integer" precision="1" attributes="unsigned" null="false" default="1" />		
+    <index alias="increase" name="increase" primary="false" unique="true" type="BTREE">
+      <column key="increase" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Element" class="\Brevis\Model\Element" local="id" foreign="increase_category_id" cardinality="many" />
+  </object>
+  
+  <object class="Cars" table="cars" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="mark_key" dbtype="varchar" phptype="string" precision="2" null="false" default="" />
+    <field key="mark_name" dbtype="varchar" phptype="string" precision="255" null="false" default="" />
+    <field key="model_key" dbtype="varchar" phptype="string" precision="3" null="false" default="" />
+    <field key="model_name" dbtype="varchar" phptype="string" precision="255" null="false" default="" />
+    <field key="year_key" dbtype="varchar" phptype="string" precision="2" null="false" default="" />
+    <field key="year_name" dbtype="varchar" phptype="string" precision="255" null="false" default="" />
+    <field key="year_start" dbtype="int" phptype="integer" precision="4" attributes="unsigned" null="false" default="0" />
+    <field key="year_finish" dbtype="int" phptype="integer" precision="4" attributes="unsigned" null="false" default="0" />
+    <index alias="mark_key" name="mark_key" primary="false" unique="false" type="BTREE">
+      <column key="mark_key" length="" collation="A" null="false" />
+    </index>
+    <index alias="model_key" name="model_key" primary="false" unique="false" type="BTREE">
+      <column key="model_key" length="" collation="A" null="false" />
+    </index>
+  </object>
+  
+  <object class="MarkAlias" table="mark_aliases" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="mark_key" dbtype="varchar" phptype="string" precision="2" null="false" default="" />
+    <field key="alias" dbtype="varchar" phptype="string" precision="255" null="false" default="" />
+  </object>
+  
+  <object class="Condition" table="conditions" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="50" null="false" default="" />
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+  </object>
+  
+  <object class="Item" table="items" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="mark_key" dbtype="varchar" phptype="string" precision="2" null="false" />
+    <field key="model_key" dbtype="varchar" phptype="string" precision="3" null="false" />
+    <field key="year_key" dbtype="varchar" phptype="string" precision="2" null="false" />
+    <field key="category_key" dbtype="varchar" phptype="string" precision="1" null="false" />
+    <field key="element_key" dbtype="varchar" phptype="string" precision="4" null="false" />
+    <field key="counter" dbtype="varchar" phptype="string" precision="4" null="false" />
+    <field key="name" dbtype="varchar" phptype="string" precision="500" null="false" />
+    <field key="kol" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" default="1" />
+    <field key="price" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" />
+    <field key="prefix" dbtype="varchar" precision="4" phptype="string" null="false" />
+    <field key="code" dbtype="varchar" phptype="string" precision="16" null="false" />
+    <field key="vendor_code" dbtype="varchar" phptype="string" precision="20" null="true" />
+    <field key="published" dbtype="tinyint" phptype="integer" precision="1" default="0" null="false" />
+    <field key="sklad_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="supplier_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="moderate" dbtype="tinyint" phptype="integer" precision="1" default="0" null="false" />
+    <field key="moderate_message" dbtype="varchar" phptype="string" precision="255" null="true" />
+    <field key="reserved" dbtype="tinyint" phptype="integer" precision="1" default="0" null="false" />
+    <field key="updatedon" dbtype="datetime" phptype="datetime" null="true" />
+    <field key="condition" dbtype="smallint" phptype="integer" precision="2" null="false" default="0" />
+    <field key="condition_comment" dbtype="varchar" phptype="string" precision="255" null="true" />
+    <field key="source" dbtype="enum" precision="'1C','site','remote'" phptype="string" null="false" default="site" />
+    <field key="error" dbtype="varchar" phptype="string" precision="500" null="true" />
+    <field key="body_type" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="comment" dbtype="text" phptype="string" null="true" />
+    <field key="remote_key" dbtype="varchar" phptype="string" precision="50" null="true" />
+    <field key="remote_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    
+    <index alias="code" name="code" primary="false" unique="false" type="BTREE">
+      <column key="code" length="" collation="A" null="false" />
+    </index>
+    
+    <aggregate alias="Cars" class="Cars" local="mark_key" foreign="mark_key" cardinality="many" />
+    <aggregate alias="Category" class="\Brevis\Model\Category" local="category_key" foreign="key" cardinality="one"  />
+    <aggregate alias="Element" class="\Brevis\Model\Element" local="element_key" foreign="key" cardinality="one"  />
+    <aggregate alias="Sklad" class="\Brevis\Model\Sklad" local="sklad_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Supplier" class="\Brevis\Model\Supplier" local="supplier_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="BodyType" class="\Brevis\Model\BodyType" local="body_type" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Condition" class="\Brevis\Model\Condition" local="condition" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Order" class="\Brevis\Model\Order" local="id" foreign="item_id" cardinality="one" owner="local" />
+    <composite alias="Images" class="\Brevis\Model\ItemImages" local="id" foreign="item_id" cardinality="many" owner="local" />
+
+  </object>
+  
+  <object class="ItemImages" table="item_images" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="item_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="item_key" dbtype="varchar" phptype="string" precision="16" null="false" />
+    <field key="filename" dbtype="varchar" phptype="string" precision="30" />
+    <field key="url" dbtype="varchar" phptype="string" precision="255" null="true" />
+    <field key="prefix" dbtype="varchar" precision="4" phptype="string" null="false" />
+    <field key="binary" dbtype="longtext" phptype="string" />
+    <field key="hash" dbtype="varshar" phptype="string" precision="64" null="true"/>
+    <field key="order" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
+    
+    <index alias="item_key" name="model_key" primary="false" unique="false" type="BTREE">
+      <column key="item_id" length="" collation="A" null="false" />
+      <column key="item_key" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Item" class="\Brevis\Model\Item" local="item_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>
+  
+  <object class="Sklad" table="sklads" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="prefix" dbtype="varchar" precision="4" phptype="string" null="true" />
+    <field key="locked" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0"/>
+    <field key="updatedon" dbtype="datetime" phptype="timestamp" null="false" default="0000-00-00 00:00:00"/>
+    <field key="name" dbtype="varchar" precision="50" phptype="string" null="true" />
+    <field key="status_id" dbtype="tinyint" precision="3" attributes="unsigned" phptype="integer" null="false" default="2"/>
+    <field key="status_message" dbtype="varchar" phptype="string" precision="500" null="true" />
+    <field key="supplier_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true"/>
+    <field key="address" dbtype="varchar" precision="255" phptype="string" null="true"/>
+    <field key="switchon" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="1" />
+    <field key="country_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1"/>
+    <field key="region_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
+    <field key="city_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
+    <field key="additional_emails" dbtype="text" phptype="string" null="true" />
+        
+    <index alias="prefix" name="prefix" primary="false" unique="true" type="BTREE">
+      <column key="prefix" length="" collation="A" null="false" />
+    </index>
+    
+    <!--<composite alias="Items" class="Item" local="prefix" foreign="prefix" cardinality="many" owner="local" />-->
+    <!--<composite alias="ItemImages" class="ItemImages" local="prefix" foreign="prefix" cardinality="many" owner="local" />-->
+    <aggregate alias="Status" class="\Brevis\Model\SkladStatus" local="status_id" foreign="id" cardinality="one" owner="foreigh" />
+    <aggregate alias="Supplier" class="\Brevis\Model\Supplier" local="supplier_id" foreign="id" cardinality="one" owner="foreigh" />
+    <aggregate alias="Country" class="\Brevis\Model\Country" local="country_id" foreign="id" cardinality="one" />
+    <aggregate alias="Region" class="\Brevis\Model\Region" local="region_id" foreign="id" cardinality="one" />
+    <aggregate alias="City" class="\Brevis\Model\City" local="city_id" foreign="id" cardinality="one" />
+    <composite alias="Items" class="\Brevis\Model\Item" local="id" foreign="sklad_id" cardinality="many" owner="local" />
+
+  </object>
+  
+  <object class="SkladStatus" table="sklad_statuses" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false"/>
+    <field key="order" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="description" dbtype="varchar" phptype="string" precision="500" null="true" />
+    <field key="show" dbtype="tinyint" phptype="integer" precision="1" null="false" attributes="unsigned" default="0" />
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Sklads" class="\Brevis\Model\Sklad" local="id" foreign="status_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="User" table="users" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="email" dbtype="varchar" phptype="string" precision="255" null="false" />
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false" />
+    <field key="passhash" dbtype="varchar" phptype="string" precision="255" null="false" />
+    <field key="hash" dbtype="varchar" phptype="string" precision="32" null="false" default="" />
+    <field key="active" dbtype="tinyint" phptype="integer" precision="1" null="false" default="0" />
+    <field key="blocked" dbtype="tinyint" phptype="integer" precision="1" null="false" default="0" />
+    <field key="createdon" dbtype="datetime" phptype="timestamp" null="false" />
+    <field key="lastlogin" dbtype="datetime" phptype="timestamp" null="true" />
+    <field key="country_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1"/>
+    <field key="region_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="11"/>
+    <field key="city_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="2"/>
+    <field key="phone" dbtype="varchar" phptype="string" precision="50" null="false"/>
+    <field key="balance" dbtype="int" phptype="integer" precision="11" null="false" default="0" />
+    <field key="buyer_level" dbtype="int" phptype="integer" precision="10" null="false" default="1" />
+    
+    
+    <index alias="email" name="email" primary="false" unique="true" type="BTREE">
+      <column key="email" length="" collation="A" null="false" />
+    </index>
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+        <rule field="phone" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+        <rule field="email" name="email" type="preg_match" rule="/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)$/" message="Введите email" />    
+    </validation>
+    <composite alias="UserGroupMembers" class="\Brevis\Model\UserGroupMember" local="id" foreign="user_id" cardinality="many" owner="local" />
+    <composite alias="UserSupplier" class="\Brevis\Model\Supplier" local="id" foreign="user_id" cardinality="one" owner="local" />
+<!--    <composite alias="UserBuyer" class="\Brevis\Model\Buyer" local="id" foreign="user_id" cardinality="one" owner="local" />-->
+    <composite alias="Orders" class="\Brevis\Model\Order" local="id" foreign="user_id" cardinality="many" owner="local" />
+    <composite alias="Fees" class="\Brevis\Model\Fee" local="id" foreign="user_id" cardinality="many" owner="local" />
+    <composite alias="EventLogs" class="\Brevis\Model\EventLog" local="id" foreign="user_id" cardinality="many" owner="local" />
+    <composite alias="UserSession" class="\Brevis\Model\UserSession" local="id" foreign="user_id" cardinality="many" owner="local" />
+    <composite alias="UserHauthServices" class="\Brevis\Model\UserHauthService" local="id" foreign="user_id" cardinality="many" owner="local" />
+    <aggregate alias="City" class="\Brevis\Model\City" local="city_id" foreign="id" cardinality="one" />
+    <aggregate alias="Region" class="\Brevis\Model\Region" local="region_id" foreign="id" cardinality="one" />
+    <aggregate alias="BuyerLevel" class="\Brevis\Model\BuyerLevel" local="buyer_level" foreign="id" cardinality="one" />
+  </object>
+  
+  <object class="UserHauthService" table="user_hauth_services" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="user_id" dbtype="int" precision="10" phptype="integer" null="false" attributes="unsigned"
+           index="unique" indexgrp="unique_fields"/>
+    <field key="identifier" dbtype="varchar" precision="100" phptype="string" null="false"/>
+    <field key="provider" dbtype="varchar" precision="50" phptype="string" null="false" index="unique"
+           indexgrp="unique_fields"/>
+    <field key="websiteurl" dbtype="varchar" precision="255" phptype="string" null="true"/>
+    <field key="profileurl" dbtype="varchar" precision="255" phptype="string" null="true"/>
+    <field key="photourl" dbtype="varchar" precision="255" phptype="string" null="true"/>
+    <field key="displayname" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="description" dbtype="text" phptype="string" null="true"/>
+    <field key="firstname" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="lastname" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="gender" dbtype="varchar" precision="50" phptype="string" null="true"/>
+    <field key="language" dbtype="varchar" precision="50" phptype="string" null="true"/>
+    <field key="age" dbtype="tinyint" precision="3" phptype="integer" null="true"/>
+    <field key="birthday" dbtype="tinyint" precision="2" phptype="integer" null="true"/>
+    <field key="birthmonth" dbtype="tinyint" precision="2" phptype="integer" null="true"/>
+    <field key="birthyear" dbtype="smallint" precision="4" phptype="integer" null="true"/>
+    <field key="email" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="emailverified" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="phone" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="address" dbtype="varchar" precision="255" phptype="string" null="true"/>
+    <field key="country" dbtype="varchar" precision="100" phptype="255" null="true"/>
+    <field key="region" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="city" dbtype="varchar" precision="100" phptype="string" null="true"/>
+    <field key="zip" dbtype="varchar" precision="25" phptype="string" null="true"/>
+    <field key="extended" dbtype="text" phptype="json" null="true" index="fulltext"/>
+    <index alias="unique_fields" name="unique_fields" primary="false" unique="true" type="BTREE">
+        <column key="user_id" length="" collation="A" null="false"/>
+        <column key="provider" length="" collation="A" null="false"/>
+    </index>
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" owner="foreign"/>
+</object>
+  
+  <object class="UserSession" table="user_sessions" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="session_id" dbtype="varchar" precision="255" phptype="string" null="false" />
+    <field key="user_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <!--<field key="access" dbtype="int" precision="20" phptype="timestamp" null="false"attributes="unsigned" />-->
+    <field key="access" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" />
+    <index alias="PRIMARY" name="UNIQUE" primary="true" unique="true" type="BTREE">
+      <column key="session_id" length="" collation="A" null="false" />
+    </index>
+  </object>
+  
+  <object class="BuyerLevel" table="buyer_levels" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="50" null="false" />
+    <field key="increase" dbtype="int" phptype="integer" precision="2" attributes="unsigned" null="false" default="10" />
+    <field key="allow_remove" dbtype="tinyint" phptype="integer" precision="1" attributes="unsigned" null="false" default="1" />		
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <index alias="increase" name="increase" primary="false" unique="true" type="BTREE">
+      <column key="increase" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Users" class="\Brevis\Model\User" local="id" foreign="buyer_level" cardinality="many" />
+  </object>
+  
+  <object class="Group" table="groups" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false" />
+    <field key="description" dbtype="text" phptype="string" null="true" />
+    <field key="nochange" dbtype="tityint" phptype="integer" attributes="unsigned" null="false" default="0" />
+    
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <composite alias="UserGroupMembers" class="\Brevis\Model\UserGroupMember" local="id" foreign="group_id" cardinality="many" owner="local" />
+    <composite alias="GroupPermissions" class="\Brevis\Model\GroupPermissions" local="id" foreign="group_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="UserGroupMember" table="group_members" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="user_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="group_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    
+    <validation>
+        <rule field="user_id" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+        <rule field="group_id" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Group" class="\Brevis\Model\Group" local="group_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>
+  
+  <object class="Permissions" table="permissions" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="key" dbtype="varchar" phptype="string" precision="20" null="false" />
+    <field key="description" dbtype="varchar" phptype="string" precision="255" null="false" />
+    <index alias="key" name="key" primary="false" unique="true" type="BTREE">
+      <column key="key" length="" collation="A" null="false" />
+    </index>
+    <composite alias="PermissionGroups" class="\Brevis\Model\GroupPermissions" local="id" foreign="perm_id" cardinality="many" owner="local" />
+    <composite alias="PermissionSuppliers" class="\Brevis\Model\SupplierPermission" local="id" foreign="perm_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="GroupPermissions" table="group_permissions" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="group_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="perm_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <aggregate alias="Group" class="\Brevis\Model\Group" local="group_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Permission" class="\Brevis\Model\Permissions" local="perm_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>
+  
+  <object class="Country" table="countries" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false"/>
+    <field key="iso" dbtype="varchar" phptype="string" precision="4" null="false"/>
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <composite alias="Regions" class="\Brevis\Model\Region" local="id" foreign="country_id" cardinality="many" owner="local" />
+    <composite alias="Cities" class="\Brevis\Model\City" local="id" foreign="country_id" cardinality="many" owner="local" />
+    <aggregate alias="Suppliers" class="\Brevis\Model\Supplier" local="id" foreign="country_id" cardinality="many" />
+  </object>
+  
+  <object class="Region" table="regions" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="country_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1" />
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false"/>
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <aggregate alias="Country" class="\Brevis\Model\Country" local="country_id" foreign="id" cardinality="one" owner="foreign" />
+    <composite alias="Cities" class="\Brevis\Model\City" local="id" foreign="region_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="City" table="cities" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="country_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1" />
+    <field key="region_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="11" />
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false"/>
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <aggregate alias="Country" class="\Brevis\Model\Country" local="country_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Region" class="\Brevis\Model\Region" local="region_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Users" class="\Brevis\Model\User" local="id" foreign="city_id" cardinality="many" />
+    <aggregate alias="Suppliers" class="\Brevis\Model\Supplier" local="id" foreign="city_id" cardinality="many" />
+    <aggregate alias="Sklads" class="\Brevis\Model\Sklad" local="id" foreign="city_id" cardinality="many" />
+  </object>
+  
+  <object class="Supplier" table="suppliers" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="user_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="code" dbtype="varchar" phptype="string" precision="8" null="false"/>
+    <field key="status_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1" />
+    <field key="status_message" dbtype="varchar" phptype="string" precision="500" null="true" />
+    
+    <field key="user_pos" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="company_name" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="country_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1"/>
+    <field key="region_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
+    <field key="city_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
+    <field key="index" dbtype="varchar" phptype="string" precision="10" null="true"/>
+    <field key="legal_address" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="actual_address" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="email" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="phone" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="fax" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="inn" dbtype="varchar" phptype="string" precision="12" null="true"/>
+    <field key="kpp" dbtype="varchar" phptype="string" precision="9" null="true"/>
+    <field key="dir_name" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="buch_name" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="bank_name" dbtype="varchar" phptype="string" precision="255" null="true"/>
+    <field key="bik" dbtype="varchar" phptype="string" precision="9" null="true"/>
+    <field key="r_schet" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="k_schet" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="okved" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="okpo" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="ogrn" dbtype="varchar" phptype="string" precision="50" null="true"/>
+    <field key="comment" dbtype="text" phptype="string" null="true"/>
+    <index alias="code" name="code" primary="false" unique="true" type="BTREE">
+      <column key="code" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Country" class="\Brevis\Model\Country" local="country_id" foreign="id" cardinality="one" />
+    <aggregate alias="Region" class="\Brevis\Model\Region" local="region_id" foreign="id" cardinality="one" />
+    <aggregate alias="City" class="\Brevis\Model\City" local="city_id" foreign="id" cardinality="one" />
+    <aggregate alias="Status" class="\Brevis\Model\SupplierStatus" local="status_id" foreign="id" cardinality="one" owner="foreign" />
+    <composite alias="Items" class="\Brevis\Model\Item" local="id" foreign="supllier_id" cardinality="many" owner="local" />
+    <composite alias="Sklad" class="\Brevis\Model\Sklad" local="id" foreign="supplier_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="SupplierStatus" table="supplier_statuses" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false"/>
+    <field key="order" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="description" dbtype="varchar" phptype="string" precision="500" null="true" />
+    <field key="show" dbtype="tinyint" phptype="integer" precision="1" null="false" attributes="unsigned" default="0" />
+    <validation>
+        <rule field="name" name="required" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="Это обязательное поле" />
+    </validation>
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Permissions" class="\Brevis\Model\SupplierPermission" local="id" foreign="status_id" cardinality="many" owner="local" />
+    <aggregate alias="Sklads" class="\Brevis\Model\Sklad" local="id" foreign="supplier_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="SupplierPermission" table="supplier_permissions" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="status_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <field key="perm_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned"/>
+    <aggregate alias="Status" class="\Brevis\Model\SupplierStatus" local="status_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Permission" class="\Brevis\Model\Permissions" local="perm_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>
+  
+  <object class="Order" table="orders" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="item_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="item_name" dbtype="varchar" phptype="string" precision="500" null="false" />
+    <field key="item_price" dbtype="int" precision="11" phptype="integer" null="false" attributes="unsigned" />
+    <field key="item_code" dbtype="varchar" phptype="string" precision="16" null="false" />
+    
+    <field key="user_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="user_city_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    
+    <field key="sklad_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="sklad_prefix" dbtype="varchar" precision="4" phptype="string" null="false" />
+    <field key="sklad_city_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    
+    <field key="cost" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="createdon" dbtype="datetime" phptype="string" null="false" />
+    <field key="updatedon" dbtype="datetime" phptype="string" null="true" />
+    <field key="status_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="1" />
+    <field key="is_paid" dbtype="tinyint" phptype="integer" precision="1" null="false" attributes="unsigned" default="0" />
+    <field key="remote_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="comment" dbtype="text" phptype="string" null="true" />
+    
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Item" class="\Brevis\Model\Item" local="item_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Status" class="\Brevis\Model\OrderStatus" local="status_id" foreign="id" cardinality="one" />
+    <composite alias="Payments" class="\Brevis\Model\Payments" local="id" foreign="order_id" cardinality="many" owner="local" />
+    <composite alias="Fees" class="\Brevis\Model\Fee" local="id" foreign="order_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="OrderStatus" table="order_statuses" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="255" null="false"/>
+    <field key="order" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0" />
+    <field key="description" dbtype="varchar" phptype="string" precision="500" null="true" />
+    <field key="fixed" dbtype="tinyint" phptype="integer" precision="1" null="false" attributes="unsigned" default="0" />
+    <field key="allow_payment" dbtype="tinyint" phptype="integer" precision="1" null="false" attributes="unsigned" default="0" />
+    <field key="permission" dbtype="varchar" phptype="string" precision="50" null="true" />
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <aggregate alias="Orders" class="\Brevis\Model\Order" local="id" foreign="status_id" cardinality="many" />
+  </object>
+  
+  <object class="EventLog" table="event_log" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="user_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <field key="timestamp" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
+    <field key="category" dbtype="varchar" precision="20" phptype="string" null="false" />
+    <field key="subject_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <field key="message" dbtype="text" phptype="string" null="false" />
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>
+  
+  <object class="PaymentType" table="payment_types" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="50" null="false" />
+    <field key="active" dbtype="tinyint" phptype="int" precision="1" null="false" default="0" />
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <composite alias="Payments" class="\Brevis\Model\Payments" local="id" foreign="type_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="Payment" table="payments" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="type_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <field key="order_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <field key="timestamp" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
+    <field key="sum" dbtype="int" phptype="integer" precision="10" null="false" default="0" />
+    <field key="comment" dbtype="varshar" phptype="string" precision="500" null="true" />
+    <aggregate alias="PaymentType" class="\Brevis\Model\PaymentType" local="type_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Order" class="\Brevis\Model\Order" local="order_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>  
+  
+  <object class="FeeType" table="fee_types" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="name" dbtype="varchar" phptype="string" precision="50" null="false" />
+    <field key="active" dbtype="tinyint" phptype="int" precision="1" null="false" default="0" />
+    <index alias="name" name="name" primary="false" unique="true" type="BTREE">
+      <column key="name" length="" collation="A" null="false" />
+    </index>
+    <composite alias="Fees" class="\Brevis\Model\Fee" local="id" foreign="type_id" cardinality="many" owner="local" />
+  </object>
+  
+  <object class="Fee" table="fees" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="user_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <field key="timestamp" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
+    <field key="type_id" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" />
+    <field key="sum" dbtype="int" phptype="integer" precision="10" null="false" default="0" />
+    <field key="comment" dbtype="varshar" phptype="string" precision="500" null="true" />
+    <field key="order_id" dbtype="int" phptype="integer" precision="10" null="true" attributes="unsigned" />
+    <field key="inv_id" dbtype="int" phptype="integer" precision="10" null="true" attributes="unsigned" />
+    <aggregate alias="User" class="\Brevis\Model\User" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="FeeType" class="\Brevis\Model\FeeType" local="type_id" foreign="id" cardinality="one" owner="foreign" />
+    <aggregate alias="Order" class="\Brevis\Model\Order" local="order_id" foreign="id" cardinality="one" owner="foreign" />
+  </object>  
+    
+  <object class="ApiKey" table="api_keys" extends="xPDO\Om\xPDOSimpleObject">
+    <field key="email" dbtype="varchar" phptype="string" precision="255" null="false" />
+    <field key="salt" dbtype="varchar" phptype="string" precision="20" null="false" />
+    <index alias="email" name="email" primary="false" unique="true" type="BTREE">
+      <column key="email" length="" collation="A" null="false" />
+    </index>
+  </object>
+  
+</model>
