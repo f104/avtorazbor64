@@ -48,16 +48,12 @@
               <img src="assets/images/logo.png?v=2" alt="Авторазбор Авангард">
             </a>
           </div>
-          <div>Авторазбор Авангард запчасти для иномарок Б/У с доставкой по всей России от Калининграда до Владивостока</div>
+          <div>Авторазбор Авангард Саратов – запчасти для иномарок б/у в наличии в Саратове</div>
           {block 'header-contacts'}
             <ul class="header-contact">
               <li>
-                {if $_core->cityKey == 'saratov'}
-                  <span>Саратов</span>
-                {else}
-                  <a href="/saratov/">Саратов</a>
-                {/if}
-                  <a href="tel:+79518857676" class="header-phone wow flash" data-wow-duration="2s" data-wow-iteration="1">+79518857676</a>
+                <span>Саратов</span>
+                <a href="tel:+79518857676" class="header-phone wow flash" data-wow-duration="2s" data-wow-iteration="1">+79518857676</a>
               </li>
               {*
               <li>

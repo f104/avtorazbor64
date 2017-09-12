@@ -85,8 +85,8 @@ class User extends Controller {
             $formRegister->input('name', ['required'])->addLabel('Представьтесь, пожалуйста');
             $formRegister->input('email', ['type' => 'email', 'required'])->addLabel('Ваш e-mail');
             $formRegister->password('password', ['required'])->addLabel('Придумайте пароль');
-            $formRegister->select('region_id', ['required'])->addLabel('Регион')->setSelectOptions($this->getRegions())->setValue(11);
-            $formRegister->input('city', ['required', 'class' => 'form-control js-typeahead-city'])->addLabel('Город')->setValue('Москва');
+            $formRegister->select('region_id', ['required'])->addLabel('Регион')->setSelectOptions($this->getRegions())->setValue(65);
+            $formRegister->input('city', ['required', 'class' => 'form-control js-typeahead-city'])->addLabel('Город')->setValue('Саратов');
             $formRegister->input('phone', ['required', 'maxlength' => 50, 'placeholder' => 'Не забудьте указать код города для стационарного телефона'])->addLabel('Телефон');
             $formRegister->checkbox('agree', ['required', 'checked'])->addLabel('Я согласен с условиями <a href="agree" target="_blank" class="mp-ajax-popup-align-top">соглашения об обработке персональных данных</a>');
             $formRegister->button('Отправить', ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'register']);

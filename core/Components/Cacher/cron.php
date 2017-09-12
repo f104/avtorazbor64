@@ -9,4 +9,4 @@ require_once $base . 'index.php';
 
 $process = new \Brevis\Components\Cacher\Cacher($Core);
 $process->cacheMarks();
-$process->cacheTotalItems();
+//$process->cacheTotalItems();
