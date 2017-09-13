@@ -273,10 +273,6 @@
                     'title' => 'Контакты',
                     'link' => 'contact',
                 ),
-                'invite' => array(
-                    'title' => 'Поставщикам',
-                    'link' => 'invite',
-                ),
             );
         }
         

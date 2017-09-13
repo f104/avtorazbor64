@@ -1,16 +1,15 @@
 {ignore}
 
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
+<script type="text/javascript" >
     (function (d, w, c) {
         (w[c] = w[c] || []).push(function() {
             try {
-                w.yaCounter40068825 = new Ya.Metrika({
-                    id:40068825,
+                w.yaCounter45937368 = new Ya.Metrika({
+                    id:45937368,
                     clickmap:true,
                     trackLinks:true,
-                    accurateTrackBounce:true,
-                    trackHash:true
+                    accurateTrackBounce:true
                 });
             } catch(e) { }
         });
@@ -27,7 +26,7 @@
         } else { f(); }
     })(document, window, "yandex_metrika_callbacks");
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/40068825" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/45937368" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 
 <script>
@@ -36,7 +35,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-42970811-2', 'auto');
+  ga('create', 'UA-42970811-3', 'auto');
   ga('send', 'pageview');
 
 </script>

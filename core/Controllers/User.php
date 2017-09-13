@@ -80,7 +80,6 @@ class User extends Controller {
                 . '{$fields} '
                 . '<div class="form-group required">{$buttons}</div> '
                 . '</fieldset>'
-                . '<br><br><div class="alert alert-info">Если вы хотите стать поставщиком, пожалуйста, <a class="text-nowrap" href="user/registersupplier">пройдите по ссылке</a>.</div>'
                 . '</form>';
             $formRegister->input('name', ['required'])->addLabel('Представьтесь, пожалуйста');
             $formRegister->input('email', ['type' => 'email', 'required'])->addLabel('Ваш e-mail');

@@ -15,7 +15,7 @@
     <div class="panel-group">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title"><span class="dotted js-map-geo" data-geo="51.456210,45.911074" data-name="ул. Азина, 50">Склад</span></h4>
+          <h4 class="panel-title"><span class="dotted js-map-geo" data-geo="51.456740,45.910199" data-name="ул. Азина, 50">Склад</span></h4>
         </div>
         <div class="panel-collapse">
           <div class="panel-body">
