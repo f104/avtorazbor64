@@ -53,6 +53,9 @@ class Robokassa {
                 $this->lang = array_merge($this->lang, $this->controller->loadLexicon($topic));
             }
         }
+        if (defined('PROJECT_MERCHANT_PERCENT')) {
+            $this->merchantPercent = PROJECT_MERCHANT_PERCENT;
+        }
     }
     
     private function _readConfig(array $config) {
