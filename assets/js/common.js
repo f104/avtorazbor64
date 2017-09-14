@@ -344,10 +344,12 @@ $(document).ready(function () {
   })(jQuery);
   
   // fix header
-  var headerHeight = $('header').outerHeight();
-  $('header').css('position', 'fixed');
-  $('.main').css('margin-top', headerHeight);
-
+  if (window.innerWidth > 768) {
+    var headerHeight = $('header').outerHeight();
+    $('header').css('position', 'fixed');
+    $('.main').css('margin-top', headerHeight);
+  }
+  
   $('.js-menu-collapse-toggler').click(function (e) {
     e.preventDefault();
     $menu = $('.top-menu');

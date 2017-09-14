@@ -7,6 +7,12 @@
       {include '_cars.requestPhoto.form.tpl'}
     </div>  
     <div class="col-sm-3">
+      {if $show == 'marks'}
+        <div class="total-promo wow bounceIn" data-wow-delay=".3s">
+          <big>{$totalItems}</big>
+          {$totalItems | decl : 'деталь,детали,деталей'} в&nbsp;наличии с&nbsp;доставкой по&nbsp;всей России
+        </div>
+      {/if}
       <div class="well">
         <p>Все детали, размещенные в каталоге, имеются в наличии и расположены на складе в Саратове по адресу ул. Азина, 50.
           Дополнительная точка выдачи расположена по адресу г. Саратов, ул. Танкистов, 90А.</p>
