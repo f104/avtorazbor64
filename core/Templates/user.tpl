@@ -16,7 +16,7 @@
           {/if}
         {/if}
       <h3>Баланс покупателя: {$authUser->balance}&nbsp;<i class="fa fa-rub"></i></h3>
-      {*<form method="get" action="fees/recharge" class="form-inline">
+      <form method="get" action="fees/recharge" class="form-inline">
         <div class="form-group">
           <label for="OutSum">Сумма</label>
           <input type="number" min="1" value="{$rechargePaiment}" name="OutSum" id="OutSum" class="form-control">
@@ -26,7 +26,7 @@
         <p>Вы будете перенаправлены на сайт платежной системы Robokassa.<br> 
           Комиссия за перичисление средств составляет {$.const.PROJECT_MERCHANT_PERCENT}% от суммы платежа.</p>
         <p>Для оплаты без комиссии, воспользуйтесь прямым переводом на банковскую карту 4276 4000 2672 1986 (Кирилл Юрьевич Г)</p>
-      </form>*}
+      </form>
       {/if}
       
       {$content}
