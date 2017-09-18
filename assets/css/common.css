@@ -7702,19 +7702,73 @@ footer a:focus {
   opacity: .8;
   border-bottom-color: rgba(255, 255, 255, 0.28);
 }
-footer ul {
+footer .footer-menu,
+footer .payments {
   padding-left: 0;
   list-style: none;
   display: inline-block;
+  vertical-align: top;
   margin-right: 30px;
 }
 @media print {
-  footer ul {
+  footer .footer-menu,
+  footer .payments {
     display: none !important;
   }
 }
-footer ul li {
+footer .footer-menu li,
+footer .payments li {
   margin-bottom: 9px;
+}
+footer .payments {
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+}
+footer .social {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px;
+}
+@media print {
+  footer .social {
+    display: none !important;
+  }
+}
+footer .social > li {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+footer .social a {
+  border: none;
+  display: block;
+  font-size: 18px;
+  background-color: white;
+  color: #333333;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  position: relative;
+}
+footer .social a:hover,
+footer .social a:active,
+footer .social a:focus {
+  border: none;
+}
+footer .social a i {
+  position: absolute;
+  left: 9px;
+  top: 6px;
+}
+footer .social a i.fa-vk {
+  left: 5px;
+}
+@media (min-width: 768px) {
+  .footer-logo {
+    text-align: center;
+    float: right;
+  }
 }
 @media (min-width: 768px) {
   .cars-row {
