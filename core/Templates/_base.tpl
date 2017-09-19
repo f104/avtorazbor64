@@ -199,8 +199,10 @@
             </ul>
           </div>
           <div class="col-sm-3">
-            <p><a class="link-clear" href="{$_core->baseUrl}"><img src="assets/images/logo.png?v=2" alt="Авторазбор Авангард"></a></p>
-            <p>Авторазбор иномарок &laquo;Авангард&raquo;<br>&copy; 2016-{$.php.date('Y')}</p>
+            <div class="footer-logo">
+              <p><a class="link-clear" href="{$_core->baseUrl}"><img src="assets/images/logo.png?v=2" alt="Авторазбор Авангард"></a></p>
+              <p>Авторазбор иномарок &laquo;Авангард&raquo;<br>&copy; 2016-{$.php.date('Y')}</p>
+            </div>
           </div>
         </div>
       </div>
