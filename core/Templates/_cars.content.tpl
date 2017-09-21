@@ -15,7 +15,6 @@
         {/if}
       </div>
       {if $showPrice}
-        <div>Средний&nbsp;срок доставки</div>
         <div>&nbsp;</div>
       {/if}
     </li>
@@ -43,7 +42,7 @@
         </div>
         <div>
           <h3><a href="cars/item?id={$item.id}">{$item.name}</a></h3>
-          <p class="small">код: {$item.code}, склад: {$item.country_iso} {$item.prefix}{if $item.remote_id?}, артикул: {$item.remote_id}{/if}</p>
+          <p class="small">код: {$item.code}</p>
           {if $item.bodytype_name? or $item.condition?}
             {set $str = []}
             {if $item.condition?}{set $str[] = 'состояние: износ ' ~ $item.condition ~ '%'}{/if}
@@ -87,9 +86,6 @@
                 <a href="help?article=price" class="mp-ajax-popup-align-top link-clear"><i class="fa fa-exclamation-circle"></i></a>
               {/if}
             </p>
-          </div>
-          <div>
-            <p><span class="items-table-hidden">Средний срок доставки: </span>{$item.delivery}</p>
           </div>
           {if $canBuy}
             <div>

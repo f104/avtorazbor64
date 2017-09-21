@@ -328,6 +328,10 @@
                 ],
                 // поставщик
                 3 => [
+                    'users' => [
+                        'title' => '<i class="fa fa-users"></i> '.$this->lang['users'],
+                        'permission' => 'users_view',
+                    ],
                     'sklads' => [
                         'title' => '<i class="fa fa-building"></i> '.$this->lang['sklads'],
                         'permission' => 'sklads_view',
@@ -339,6 +343,10 @@
                     'orders' => [
                         'title' => '<i class="fa fa-shopping-cart"></i> '.$this->lang['orders'],
                         'permission' => 'orders_view',
+                    ],
+                    'fees' => [
+                        'title' => '<i class="fa fa-rub"></i> '.$this->lang['fees'],
+                        'permission' => 'fees_view',
                     ],
                     'user/supplier/info' => [
                         'title' => '<i class="fa fa-address-card-o"></i> '.$this->lang['supplier-info'],

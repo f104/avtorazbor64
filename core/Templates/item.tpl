@@ -19,7 +19,7 @@
         </p>
       {/if}
       {if $item.comment?}<p>{$item.comment | nl2br}</p>{/if}
-      <p>В наличии на складе <span class="small">({$item.country_iso} {$item.prefix})</span></p>
+      <p>В наличии на складе</p>
 
       {*if $showPrice}
       <h4>Цена {$item.price} <i class="fa fa-rub"></i></h4>
@@ -40,7 +40,7 @@
         <h4>Цена поставщика {$item.price} <i class="fa fa-rub"></i></h4>
         {else}
         <h4>Цена {$item.price} <i class="fa fa-rub"></i></h4>
-        <p>Средний срок доставки: {$item.delivery}</p>
+        <p>Цена указана самовывозом с нашего склада или с доставкой до транспортной компании,  цену и срок доставки в ваш регион уточняйте в транспортной компании.</p>
 
         {if $canBuy}
           {if $item.reserved?}
@@ -49,7 +49,7 @@
             <button data-id="{$item.id}" data-price="{$item.price}" class="btn btn-primary js-button-buy">Заказать</button>
           {/if}
         {elseif !$_core->isAuth}
-          <p>Цена и срок доставки показаны для Москвы, <a href="#auth_form" class="js-inlinepopup">войдите или зарегистрируйтесь</a>, чтобы увидеть цену в вашем регионе и иметь возможность заказать деталь.</p>
+          <p><a href="#auth_form" class="js-inlinepopup">Войдите или зарегистрируйтесь</a>, чтобы иметь возможность заказать деталь.</p>
         {/if}
 
       {/if}

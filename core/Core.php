@@ -516,14 +516,6 @@
                 ]);
             }
             
-            // наценка за доставку
-            if (!isset($this->increases)) {
-                $c = $this->xpdo->newQuery('Brevis\Model\Increase');
-                $c->select('id, increase');
-                if ($c->prepare() and $c->stmt->execute()) {
-                    $this->increases = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
-                }
-            }
             // уровни цен для покупателей
             if (!isset($this->buyerlevels)) {
                 $c = $this->xpdo->newQuery('Brevis\Model\BuyerLevel');
@@ -532,74 +524,12 @@
                     $this->buyerlevels = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
                 }
             }
-//            $increaseDelivery = [
-//                1 => 300,
-//                2 => 700,
-//                3 => 1500,
-//                4 => 4000,
-//            ];
             
             // маржа Русанова
             $kRusanov = 1 + $this->buyerlevels[$user->buyer_level] / 100;
-//            $kRusanov = 1.1;
-//            switch (true) {
-//                case ($item['price'] > 10000 and $item['price'] <= 20000):
-//                    $kRusanov = 1.25;
-//                    break;
-//                case ($item['price'] > 20000):
-//                    $kRusanov = 1.2;
-//                    break;
-//            }
-            $skladsRusanov = [1, 2, 3, 4, 16]; // id складов Русанова + motorland
-            // регионы с представительствами
-            $regionsRusanov = [11, 65];
-            
-            if (!in_array($item['sklad_id'], $skladsRusanov)) {
-                $item['price'] = $item['price'] * $kRusanov;
-            }
+            $item['price'] = $item['price'] * $kRusanov;
             $item['delivery'] = 'В течение дня';
             
-            // motorland
-            if ($item['sklad_id'] == 16) {
-                // до Москвы
-//                $deliveryPrice = $item['price'] / $kRusanov <= 10000 ? 300 : 600;
-                $deliveryPrice = $item['price'] <= 10000 ? 600 : 1000;
-                $item['delivery'] = '3 дня';
-                // далее
-                if ($user->region_id != $moscowID) {
-                    $deliveryPrice += $this->increases[$item['increase_category']];
-                    $item['delivery'] = '5 дней';
-                }
-                $item['price'] += $deliveryPrice;
-                return $item['price'];
-            }
-            
-            // autoskipper
-            if ($item['sklad_id'] == 18) {
-                // до Москвы
-                $deliveryPrice = 0;
-                $item['delivery'] = '2 дня';
-                // далее
-                if ($user->region_id != $moscowID) {
-                    $deliveryPrice += $this->increases[$item['increase_category']];
-                    $item['delivery'] = '5 дней';
-                }
-                $item['price'] += $deliveryPrice;
-                return $item['price'];
-            }
-
-            if ($item['region_id'] != $user->region_id and array_key_exists($item['increase_category'], $this->increases)) {
-                // берем деньги за доставку
-                $deliveryPrice = $this->increases[$item['increase_category']];
-                $item['delivery'] = '2 дня';
-                // если покупатель и товар не в Москве, умножаем доставку в два раза, т.к. доставка идет через Москву
-                if ($item['region_id'] != $moscowID and $user->region_id != $moscowID) {
-                    $deliveryPrice = $deliveryPrice * 2;
-                    $item['delivery'] = '4 дня';
-                }
-                $item['price'] += $deliveryPrice;
-            }
-                                    
             return $item['price'];
         }
         
