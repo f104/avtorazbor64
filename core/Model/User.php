@@ -226,7 +226,7 @@ class User extends \xPDO\Om\xPDOSimpleObject {
     }
     
     public function isManager() {
-        return in_array($this->getUserGroup(), [2,4,5]);
+        return in_array($this->getUserGroup(), [2,3,4,5]);
     }
     
     public function isBuyer() {
