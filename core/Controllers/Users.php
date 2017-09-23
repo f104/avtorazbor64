@@ -523,7 +523,8 @@ class Update extends BuyerLevels {
             if ($item = $this->core->xpdo->getObject($this->classname, $_REQUEST['id'])) {
                 if (isset($_REQUEST['update'])) {
                     // update
-                    if (!empty($name = $this->core->cleanInput($_REQUEST['name'])) and !empty($increase = intval($_REQUEST['increase']))) {
+                    if (!empty($name = $this->core->cleanInput($_REQUEST['name'])) and isset($_REQUEST['increase'])) {
+                        $increase = intval($_REQUEST['increase']);
                         if (!$ae = $this->core->xpdo->getObject($this->classname, ['id:!=' => $item->id, 'name' => $name])) {
                             if (!$ae = $this->core->xpdo->getObject($this->classname, ['id:!=' => $item->id, 'increase' => $increase])) {
                                 $item->set('name', $name);
