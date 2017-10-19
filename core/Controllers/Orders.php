@@ -519,17 +519,24 @@ class Itemview extends Orders {
      */ 
     private function _getMarks() {
         $rows = array();
-        $c = $this->core->xpdo->newQuery('Brevis\Model\Cars');
-        $c->select($this->core->xpdo->getSelectColumns('Brevis\Model\Cars', 'Cars', '', ['mark_key','mark_name']));
+        $c = $this->core->xpdo->newQuery('Brevis\Model\Item');
+        $c->select('mark_key');
+        $c->where($this->where);
         $c->distinct();
-        $c->sortby('mark_name', 'ASC');
-        $c->innerJoin('Brevis\Model\Item', 'Item', 'Item.mark_key=Cars.mark_key');
-        $where = $this->where;
-//        $where['Item.supplier_id'] = $this->supplier_id;
-        $c->where($where);
 //        $c->prepare(); var_dump($c->toSQL());
         if ($c->prepare() && $c->stmt->execute()) {
-            $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            $keys = $c->stmt->fetchAll(\PDO::FETCH_COLUMN);
+            $c = $this->core->xpdo->newQuery('Brevis\Model\Cars');
+            $c->select(['mark_key','mark_name']);
+            $c->distinct();
+            $c->sortby('mark_name', 'ASC');
+            $c->where(['mark_key:IN' => $keys]);
+    //        $c->prepare(); var_dump($c->toSQL());
+            if ($c->prepare() && $c->stmt->execute()) {
+                $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            } else {
+                $this->core->logger->error('Не могу выбрать marks:' . print_r($c->stmt->errorInfo(), true));
+            }
         } else {
             $this->core->logger->error('Не могу выбрать marks:' . print_r($c->stmt->errorInfo(), true));
         }
@@ -542,26 +549,41 @@ class Itemview extends Orders {
      * @return array
      */
     public function getModels($mark_key) {
-        $rows = array();
-        $c = $this->core->xpdo->newQuery('Brevis\Model\Cars');
-        $c->select($this->core->xpdo->getSelectColumns('Brevis\Model\Cars', 'Cars'));
-        $c->distinct();
-        $c->sortby('model_name', 'ASC');
-        $c->innerJoin('Brevis\Model\Item', 'Item', 'Item.model_key=Cars.model_key');
-        $where = ['Cars.mark_key'=> $mark_key, 'Item.mark_key'=> $mark_key]; //, 'Item.year_key' => 'Cars.year_key'
-        $where[] = "Item.year_key = LPAD(Cars.year_key,2,'0')"; //FUCK!
+        $models = [];
+        $c = $this->core->xpdo->newQuery('Brevis\Model\Item');
+        $c->select(['model_key','year_key']);
+        $c->groupby('model_key, year_key');
+        $where = ['Item.mark_key'=> $mark_key];
         $where = array_merge($where, $this->where);
         $c->where($where);
-//        $c->prepare(); var_dump($c->toSQL());
         if ($c->prepare() && $c->stmt->execute()) {
-            $rows = $c->stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $keys = $c->stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $tmp = [];
+            foreach ($keys as $key) {
+                $tmp[$key['model_key']][] = $key['year_key'];
+            }
+            $keys = $tmp;
+            $c = $this->core->xpdo->newQuery('Brevis\Model\Cars');
+            $c->select($this->core->xpdo->getSelectColumns('Brevis\Model\Cars', 'Cars'));
+            $c->distinct();
+            $c->sortby('model_name', 'ASC');
+            $where = ['mark_key'=> $mark_key, 'model_key:IN'=> array_keys($keys)]; //, 'Item.year_key' => 'Cars.year_key'
+//            $where[] = "Item.year_key = LPAD(Cars.year_key,2,'0')"; //FUCK!
+            $c->where($where);
+//            $c->prepare(); var_dump($c->toSQL());
+            if ($c->prepare() && $c->stmt->execute()) {
+                $rows = $c->stmt->fetchAll(\PDO::FETCH_ASSOC);
+                foreach ($rows as $row) {
+                    if (in_array($row['year_key'], $keys[$row['model_key']])) {
+                        $row['year_key'] = sprintf("%'.02d", $row['year_key']);
+                        $models[$row['model_key'].$row['year_key']] = $row['year_name'] ?: $row['model_name'];
+                    }
+                }
+            } else {
+                $this->core->log('Не могу выбрать models:' . print_r($c->stmt->errorInfo(), true));
+            }
         } else {
             $this->core->log('Не могу выбрать models:' . print_r($c->stmt->errorInfo(), true));
-        }
-        $models = [];
-        foreach ($rows as $row) {
-            $row['year_key'] = sprintf("%'.02d", $row['year_key']);
-            $models[$row['model_key'].$row['year_key']] = $row['year_name'] ?: $row['model_name'];
         }
         return $models;
     }
@@ -577,20 +599,27 @@ class Itemview extends Orders {
      */
     public function getCategories($mark_key, $model_key, $year_key) {
         $rows = array();
-        $c = $this->core->xpdo->newQuery('Brevis\Model\Category');
-        $c->select($this->core->xpdo->getSelectColumns('Brevis\Model\Category', 'Category', '', ['key','name']));
+        $c = $this->core->xpdo->newQuery('Brevis\Model\Item');
+        $c->select('category_key');
         $c->distinct();
-        $c->sortby('name', 'ASC');
-        $c->innerJoin('Brevis\Model\Item', 'Item', 'Item.category_key=Category.key');
         $where = [
-            'Item.mark_key' => $mark_key,
-            'Item.model_key' => $model_key,
-            'Item.year_key' => empty($year_key) ? '' : $this->formatYearKey($year_key),
+            'mark_key' => $mark_key,
+            'model_key' => $model_key,
+            'year_key' => empty($year_key) ? '' : $this->formatYearKey($year_key),
         ];
         $where = array_merge($where, $this->where);
         $c->where($where);
         if ($c->prepare() && $c->stmt->execute()) {
-            $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            $keys = $c->stmt->fetchAll(\PDO::FETCH_COLUMN);
+            $c = $this->core->xpdo->newQuery('Brevis\Model\Category');
+            $c->select($this->core->xpdo->getSelectColumns('Brevis\Model\Category', 'Category', '', ['key','name']));
+            $c->sortby('name', 'ASC');
+            $c->where(['key:IN' => $keys]);
+            if ($c->prepare() && $c->stmt->execute()) {
+                $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            } else {
+                $this->core->log('Не могу выбрать category:' . print_r($c->stmt->errorInfo(), true));
+            }
         } else {
             $this->core->log('Не могу выбрать category:' . print_r($c->stmt->errorInfo(), true));
         }
@@ -605,11 +634,9 @@ class Itemview extends Orders {
      */
     public function getElements($mark_key, $model_key, $year_key, $category_key) {
         $rows = array();
-        $c = $this->core->xpdo->newQuery('Brevis\Model\Element');
-        $c->select($this->core->xpdo->getSelectColumns('Brevis\Model\Element', 'Element', '', ['key','name']));
+        $c = $this->core->xpdo->newQuery('Brevis\Model\Item');
+        $c->select('element_key');
         $c->distinct();
-        $c->sortby('name', 'ASC');
-        $c->innerJoin('Brevis\Model\Item', 'Item', 'Item.element_key=Element.key');
         $where = [
             'Item.mark_key'=> $mark_key, 
             'Item.model_key'=> $model_key,
@@ -619,7 +646,16 @@ class Itemview extends Orders {
         $where = array_merge($where, $this->where);
         $c->where($where);
         if ($c->prepare() && $c->stmt->execute()) {
-            $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            $keys = $c->stmt->fetchAll(\PDO::FETCH_COLUMN);
+            $c = $this->core->xpdo->newQuery('Brevis\Model\Element');
+            $c->select(['key','name']);
+            $c->sortby('name', 'ASC');
+            $c->where(['key:IN' => $keys]);
+            if ($c->prepare() && $c->stmt->execute()) {
+                $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            } else {
+                $this->core->log('Не могу выбрать element:' . print_r($c->stmt->errorInfo(), true));
+            }
         } else {
             $this->core->log('Не могу выбрать element:' . print_r($c->stmt->errorInfo(), true));
         }
