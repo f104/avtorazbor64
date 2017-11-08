@@ -248,18 +248,20 @@ class Sklads extends Controller {
      */
     public function countItemsShow() {
         $rows = array();
-        $c = $this->core->xpdo->newQuery('Brevis\Model\Item');
-        $c->select(array('sklad_id', 'COUNT(*)'));
-        $c->where([
-            'published' => 1,
-            'moderate' => 1,
-            'sklad_id:IN' => $this->core->getSklads(),
-        ]);
-        $c->groupby('sklad_id');
-        if ($c->prepare() && $c->stmt->execute()) {
-            $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
-        } else {
-            $this->core->log('Не могу выбрать Items:' . print_r($c->stmt->errorInfo(), true));
+        if ($sklads = $this->core->getSklads()) {
+            $c = $this->core->xpdo->newQuery('Brevis\Model\Item');
+            $c->select(array('sklad_id', 'COUNT(*)'));
+            $c->where([
+                'published' => 1,
+                'moderate' => 1,
+                'sklad_id:IN' => $this->core->getSklads(),
+            ]);
+            $c->groupby('sklad_id');
+            if ($c->prepare() && $c->stmt->execute()) {
+                $rows = $c->stmt->fetchAll(\PDO::FETCH_KEY_PAIR);
+            } else {
+                $this->core->log('Не могу выбрать Items:' . print_r($c->stmt->errorInfo(), true));
+            }
         }
         return $rows;
     }
