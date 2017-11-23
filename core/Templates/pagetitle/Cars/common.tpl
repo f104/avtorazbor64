@@ -1,1 +1,1 @@
-{block 'common'}{$name} для автомобилей {$mark_name}{if $model_name?} {$year_name ?: $model_name}{/if} купить. Доставка по России. Скидки!{/block}
+{block 'common'}{$name} для автомобилей {$mark_name}{if $model_name?} {$year_name ?: $model_name}{/if} купить. Отправка по России. Постоянным клиентам скидки!{/block}

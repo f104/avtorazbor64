@@ -10,7 +10,7 @@
       {if $show == 'marks'}
         <div class="total-promo wow bounceIn" data-wow-delay=".3s">
           <big>{$totalItems}</big>
-          {$totalItems | decl : 'деталь,детали,деталей'} в&nbsp;наличии с&nbsp;доставкой по&nbsp;всей России
+          {$totalItems | decl : 'деталь,детали,деталей'} в&nbsp;наличии на&nbsp;складе в&nbsp;Саратове. Отправка во&nbsp;все регионы России и&nbsp;СНГ.
         </div>
       {/if}
       <div class="well">

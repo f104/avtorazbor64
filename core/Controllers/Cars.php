@@ -147,9 +147,9 @@
                             $this->elements[$this->element['key']]['selected'] = 'selected';
                             $this->selects['element'] = $this->elements;
                             $show = 'items';
-                            $this->name = $this->element['name'] . ' для автомобилей ' . $this->mark['mark_name'] . ' ' . $this->model['name'];
+                            $this->name = $this->element['name'] . ' для автомобилей ' . $this->mark['mark_name'] . ' ' . $this->model['name'] . ' в Саратове';
                             $this->setSEO([
-                                'name' => $this->element['name'],
+                                'name' => $this->element['name'] . ' БУ в Саратове',
                                 'mark_name' => $this->mark['mark_name'],
                                 'model_name' => $this->model['model_name'],
                                 'year_name' => $this->model['year_name'],
@@ -166,9 +166,9 @@
                             }
                         } else {
                             $show = 'elements';
-                            $this->name = 'Запчасти (' . mb_strtolower($this->category['name']) . ') БУ для автомобилей ' . $this->mark['mark_name'] . ' ' . $this->model['name'];
+                            $this->name = 'Запчасти (' . mb_strtolower($this->category['name']) . ') БУ для автомобилей ' . $this->mark['mark_name'] . ' ' . $this->model['name'] . ' в Саратове';
                             $this->setSEO([
-                                'name' => 'Запчасти (' . mb_strtolower($this->category['name']) . ') БУ',
+                                'name' => 'Запчасти (' . mb_strtolower($this->category['name']) . ') БУ в Саратове',
                                 'mark_name' => $this->mark['mark_name'],
                                 'model_name' => $this->model['model_name'],
                                 'year_name' => $this->model['year_name'],
@@ -182,9 +182,9 @@
                         }
                     } else {
                         $show = 'categories';
-                        $this->name = 'Запчасти БУ для автомобилей ' . $this->mark['mark_name'] . ' ' . $this->model['name'];
+                        $this->name = 'Запчасти БУ для автомобилей ' . $this->mark['mark_name'] . ' ' . $this->model['name'] . ' в Саратове';
                         $this->setSEO([
-                            'name' => 'Запчасти БУ',
+                            'name' => 'Запчасти БУ в Саратове',
                             'mark_name' => $this->mark['mark_name'],
                             'model_name' => $this->model['model_name'],
                             'year_name' => $this->model['year_name'],
@@ -198,9 +198,9 @@
                     }
                 } else {
                     $show = 'models';
-                    $this->name = 'Запчасти БУ для автомобилей ' . $this->mark['mark_name'];
+                    $this->name = 'Запчасти БУ для автомобилей ' . $this->mark['mark_name'] . ' в Саратове';
                     $this->setSEO([
-                        'name' => 'Запчасти БУ',
+                        'name' => 'Запчасти БУ в Саратове',
                         'mark_name' => $this->mark['mark_name'],
                     ]);
                     $items = $this->models;

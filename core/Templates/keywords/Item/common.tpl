@@ -1,1 +1,1 @@
-{block 'common'}купить {$name}, {$name} замена, {$name} цена, {$name} в наличии, {$name} БУ{/block}
+{block 'common'}купить {$name}, {$name} замена, {$name} цена Саратов, {$name} в наличии в Саратове, {$name} БУ Саратовская область{/block}
