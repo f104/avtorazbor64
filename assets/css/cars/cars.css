@@ -1,5 +1,6 @@
-/* glue: 0.11.1 hash: f04b30a60f */
+/* glue: 0.11.1 hash: b8cf4fd7b7 */
         .sprite-cars-cars,
+.sprite-cars-cars20170504,
 .sprite-cars-zaz,
 .sprite-cars-vortex,
 .sprite-cars-volvo,
@@ -13,6 +14,7 @@
 .sprite-cars-smart,
 .sprite-cars-skoda,
 .sprite-cars-seat,
+.sprite-cars-scion,
 .sprite-cars-saturn,
 .sprite-cars-saab,
 .sprite-cars-rover,
@@ -28,17 +30,24 @@
 .sprite-cars-nissan,
 .sprite-cars-mitsubishi,
 .sprite-cars-mini,
+.sprite-cars-mercury,
 .sprite-cars-mercedes-benz,
 .sprite-cars-mazda,
+.sprite-cars-maserati,
+.sprite-cars-man,
 .sprite-cars-lincoln,
 .sprite-cars-lifan,
 .sprite-cars-lexus,
+.sprite-cars-ldv,
 .sprite-cars-land-rover,
 .sprite-cars-lancia,
+.sprite-cars-lada-vaz,
 .sprite-cars-kia,
 .sprite-cars-jeep,
 .sprite-cars-jaguar,
+.sprite-cars-iveco,
 .sprite-cars-isuzu,
+.sprite-cars-iran-khodro,
 .sprite-cars-infiniti,
 .sprite-cars-hyundai,
 .sprite-cars-hummer,
@@ -47,9 +56,12 @@
 .sprite-cars-geely,
 .sprite-cars-gaz,
 .sprite-cars-ford,
+.sprite-cars-ford-north-america,
 .sprite-cars-fiat,
 .sprite-cars-dodge,
+.sprite-cars-datsun,
 .sprite-cars-daihatsu,
+.sprite-cars-daf,
 .sprite-cars-daewoo,
 .sprite-cars-dacia,
 .sprite-cars-citroen,
@@ -59,393 +71,480 @@
 .sprite-cars-cadillac,
 .sprite-cars-byd,
 .sprite-cars-bmw,
+.sprite-cars-bentley,
+.sprite-cars-baw,
 .sprite-cars-audi,
 .sprite-cars-alfa-romeo,
 .sprite-cars-acura {
-            background-image: url('cars20170504.png');
+            background-image: url('cars.png');
             background-repeat: no-repeat;
         }
         
         .sprite-cars-cars {
             background-position: 0 0;
-            width: 360px;
-            height: 311px;
+            width: 936px;
+            height: 545px;
+        }
+        
+        .sprite-cars-cars20170504 {
+            background-position: -936px 0;
+            width: 432px;
+            height: 415px;
         }
         
         .sprite-cars-zaz {
-            background-position: 0 -311px;
+            background-position: -936px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-vortex {
-            background-position: -36px -311px;
+            background-position: -972px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-volvo {
-            background-position: -72px -311px;
+            background-position: -1008px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-volkswagen {
-            background-position: -108px -311px;
+            background-position: -1044px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-vaz {
-            background-position: -144px -311px;
+            background-position: -1080px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-uaz {
-            background-position: -180px -311px;
+            background-position: -1116px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-toyota {
-            background-position: -216px -311px;
+            background-position: -1152px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-suzuki {
-            background-position: -252px -311px;
+            background-position: -1188px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-subaru {
-            background-position: -288px -311px;
+            background-position: -1224px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-ssang-yong {
-            background-position: -324px -311px;
+            background-position: -1260px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-smart {
-            background-position: -360px 0;
+            background-position: -1296px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-skoda {
-            background-position: -360px -26px;
+            background-position: -1332px -415px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-seat {
-            background-position: -360px -52px;
+            background-position: -936px -441px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-scion {
+            background-position: -972px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-saturn {
-            background-position: -360px -78px;
+            background-position: -1008px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-saab {
-            background-position: -360px -104px;
+            background-position: -1044px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-rover {
-            background-position: -360px -130px;
+            background-position: -1080px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-rolls-royce {
-            background-position: -360px -156px;
+            background-position: -1116px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-renault {
-            background-position: -360px -182px;
+            background-position: -1152px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-proton {
-            background-position: -360px -208px;
+            background-position: -1188px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-porsche {
-            background-position: -360px -234px;
+            background-position: -1224px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-pontiac {
-            background-position: -360px -260px;
+            background-position: -1260px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-plymuth {
-            background-position: -360px -286px;
+            background-position: -1296px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-plymouth {
-            background-position: 0 -337px;
+            background-position: -1332px -441px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-peugeot {
-            background-position: -36px -337px;
+            background-position: -936px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-opel {
-            background-position: -72px -337px;
+            background-position: -972px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-nissan {
-            background-position: -108px -337px;
+            background-position: -1008px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-mitsubishi {
-            background-position: -144px -337px;
+            background-position: -1044px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-mini {
-            background-position: -180px -337px;
+            background-position: -1080px -467px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-mercury {
+            background-position: -1116px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-mercedes-benz {
-            background-position: -216px -337px;
+            background-position: -1152px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-mazda {
-            background-position: -252px -337px;
+            background-position: -1188px -467px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-maserati {
+            background-position: -1224px -467px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-man {
+            background-position: -1260px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-lincoln {
-            background-position: -288px -337px;
+            background-position: -1296px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-lifan {
-            background-position: -324px -337px;
+            background-position: -1332px -467px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-lexus {
-            background-position: -360px -337px;
+            background-position: -936px -493px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-ldv {
+            background-position: -972px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-land-rover {
-            background-position: 0 -363px;
+            background-position: -1008px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-lancia {
-            background-position: -36px -363px;
+            background-position: -1044px -493px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-lada-vaz {
+            background-position: -1080px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-kia {
-            background-position: -72px -363px;
+            background-position: -1116px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-jeep {
-            background-position: -108px -363px;
+            background-position: -1152px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-jaguar {
-            background-position: -144px -363px;
+            background-position: -1188px -493px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-iveco {
+            background-position: -1224px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-isuzu {
-            background-position: -180px -363px;
+            background-position: -1260px -493px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-iran-khodro {
+            background-position: -1296px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-infiniti {
-            background-position: -216px -363px;
+            background-position: -1332px -493px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-hyundai {
-            background-position: -252px -363px;
+            background-position: -936px -519px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-hummer {
-            background-position: -288px -363px;
+            background-position: -972px -519px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-honda {
-            background-position: -360px -312px;
+            background-position: -1008px -519px;
             width: 36px;
             height: 25px;
         }
         
         .sprite-cars-great-wall {
-            background-position: -324px -363px;
+            background-position: 0 -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-geely {
-            background-position: -360px -363px;
+            background-position: -36px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-gaz {
-            background-position: -396px 0;
+            background-position: -72px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-ford {
-            background-position: -396px -26px;
+            background-position: -1044px -519px;
+            width: 36px;
+            height: 25px;
+        }
+        
+        .sprite-cars-ford-north-america {
+            background-position: -1080px -519px;
             width: 36px;
             height: 25px;
         }
         
         .sprite-cars-fiat {
-            background-position: -396px -51px;
+            background-position: -108px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-dodge {
-            background-position: -396px -77px;
+            background-position: -144px -545px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-datsun {
+            background-position: -180px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-daihatsu {
-            background-position: -396px -103px;
+            background-position: -216px -545px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-daf {
+            background-position: -252px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-daewoo {
-            background-position: -396px -129px;
+            background-position: -1116px -519px;
             width: 36px;
             height: 25px;
         }
         
         .sprite-cars-dacia {
-            background-position: -396px -154px;
+            background-position: -288px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-citroen {
-            background-position: -396px -180px;
+            background-position: -324px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-chrysler {
-            background-position: -396px -206px;
+            background-position: -1152px -519px;
             width: 36px;
             height: 25px;
         }
         
         .sprite-cars-chevrolet {
-            background-position: -396px -231px;
+            background-position: -1188px -519px;
             width: 36px;
             height: 25px;
         }
         
         .sprite-cars-chery {
-            background-position: -396px -256px;
+            background-position: -360px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-cadillac {
-            background-position: -396px -282px;
+            background-position: -396px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-byd {
-            background-position: -396px -308px;
+            background-position: -432px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-bmw {
-            background-position: -396px -334px;
+            background-position: -468px -545px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-bentley {
+            background-position: -504px -545px;
+            width: 36px;
+            height: 26px;
+        }
+        
+        .sprite-cars-baw {
+            background-position: -540px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-audi {
-            background-position: -396px -360px;
+            background-position: -576px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-alfa-romeo {
-            background-position: 0 -389px;
+            background-position: -612px -545px;
             width: 36px;
             height: 26px;
         }
         
         .sprite-cars-acura {
-            background-position: -36px -389px;
+            background-position: -648px -545px;
             width: 36px;
             height: 26px;
         }
         
         @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
             .sprite-cars-cars,
+    .sprite-cars-cars20170504,
     .sprite-cars-zaz,
     .sprite-cars-vortex,
     .sprite-cars-volvo,
@@ -459,6 +558,7 @@
     .sprite-cars-smart,
     .sprite-cars-skoda,
     .sprite-cars-seat,
+    .sprite-cars-scion,
     .sprite-cars-saturn,
     .sprite-cars-saab,
     .sprite-cars-rover,
@@ -474,17 +574,24 @@
     .sprite-cars-nissan,
     .sprite-cars-mitsubishi,
     .sprite-cars-mini,
+    .sprite-cars-mercury,
     .sprite-cars-mercedes-benz,
     .sprite-cars-mazda,
+    .sprite-cars-maserati,
+    .sprite-cars-man,
     .sprite-cars-lincoln,
     .sprite-cars-lifan,
     .sprite-cars-lexus,
+    .sprite-cars-ldv,
     .sprite-cars-land-rover,
     .sprite-cars-lancia,
+    .sprite-cars-lada-vaz,
     .sprite-cars-kia,
     .sprite-cars-jeep,
     .sprite-cars-jaguar,
+    .sprite-cars-iveco,
     .sprite-cars-isuzu,
+    .sprite-cars-iran-khodro,
     .sprite-cars-infiniti,
     .sprite-cars-hyundai,
     .sprite-cars-hummer,
@@ -493,9 +600,12 @@
     .sprite-cars-geely,
     .sprite-cars-gaz,
     .sprite-cars-ford,
+    .sprite-cars-ford-north-america,
     .sprite-cars-fiat,
     .sprite-cars-dodge,
+    .sprite-cars-datsun,
     .sprite-cars-daihatsu,
+    .sprite-cars-daf,
     .sprite-cars-daewoo,
     .sprite-cars-dacia,
     .sprite-cars-citroen,
@@ -505,13 +615,15 @@
     .sprite-cars-cadillac,
     .sprite-cars-byd,
     .sprite-cars-bmw,
+    .sprite-cars-bentley,
+    .sprite-cars-baw,
     .sprite-cars-audi,
     .sprite-cars-alfa-romeo,
     .sprite-cars-acura {
-                background-image: url('cars20170504.png');
-                -webkit-background-size: 432px 415px;
-                -moz-background-size: 432px 415px;
-                background-size: 432px 415px;
+                background-image: url('cars.png?1');
+                -webkit-background-size: 1368px 571px;
+                -moz-background-size: 1368px 571px;
+                background-size: 1368px 571px;
             }
         }
         
