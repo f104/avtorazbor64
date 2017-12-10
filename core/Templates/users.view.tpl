@@ -31,7 +31,7 @@
       {* покупатели *}
         {* баланс *}
         <h3>Баланс покупателя: <span class="js-userbalance_{$user.id}">{$user.balance}</span>&nbsp;<i class="fa fa-rub"></i></span> 
-          {if !$popup}&nbsp;&nbsp;&nbsp;<a href="fees/add?user_id={$user.id}" class="btn btn-primary btn-xs js-ajaxpopup">Пополнить</a>{/if}
+          {if !$popup}&nbsp;&nbsp;&nbsp;<a href="fees/add?user_id={$user.id}" class="btn btn-primary btn-xs js-ajaxpopup">Изменить</a>{/if}
         </h3>
           {$user.fees}
         {* заказы *}
