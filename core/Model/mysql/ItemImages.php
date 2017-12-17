@@ -83,9 +83,9 @@ class ItemImages extends \Brevis\Model\ItemImages
         ),
         'indexes' => 
         array (
-            'model_key' => 
+            'item_id' => 
             array (
-                'alias' => 'item_key',
+                'alias' => 'item_id',
                 'primary' => false,
                 'unique' => false,
                 'type' => 'BTREE',
@@ -97,6 +97,16 @@ class ItemImages extends \Brevis\Model\ItemImages
                         'collation' => 'A',
                         'null' => false,
                     ),
+                ),
+            ),
+            'item_key' => 
+            array (
+                'alias' => 'item_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
                     'item_key' => 
                     array (
                         'length' => '',

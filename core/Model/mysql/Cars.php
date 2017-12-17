@@ -125,6 +125,22 @@ class Cars extends \Brevis\Model\Cars
                     ),
                 ),
             ),
+            'year_key' => 
+            array (
+                'alias' => 'year_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'year_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
         ),
     );
 }

@@ -16,6 +16,9 @@
     <field key="name" dbtype="varchar" phptype="string" precision="500" null="false" default="" />
     <field key="increase_category" dbtype="int" phptype="integer" precision="10" null="false" default="1" />
     <field key="increase_category_id" dbtype="int" phptype="integer" precision="10" null="false" default="1" />
+    <index alias="category_key" name="category_key" primary="false" unique="false" type="BTREE">
+      <column key="category_key" length="" collation="A" null="false" />
+    </index>
     <index alias="key" name="key" primary="false" unique="true" type="BTREE">
       <column key="key" length="" collation="A" null="false" />
     </index>
@@ -53,6 +56,9 @@
     </index>
     <index alias="model_key" name="model_key" primary="false" unique="false" type="BTREE">
       <column key="model_key" length="" collation="A" null="false" />
+    </index>
+    <index alias="year_key" name="year_key" primary="false" unique="false" type="BTREE">
+      <column key="year_key" length="" collation="A" null="false" />
     </index>
   </object>
   
@@ -100,6 +106,21 @@
     <index alias="code" name="code" primary="false" unique="false" type="BTREE">
       <column key="code" length="" collation="A" null="false" />
     </index>
+    <index alias="mark_key" name="mark_key" primary="false" unique="false" type="BTREE">
+      <column key="mark_key" length="" collation="A" null="false" />
+    </index>
+    <index alias="model_key" name="model_key" primary="false" unique="false" type="BTREE">
+      <column key="model_key" length="" collation="A" null="false" />
+    </index>
+    <index alias="year_key" name="year_key" primary="false" unique="false" type="BTREE">
+      <column key="year_key" length="" collation="A" null="false" />
+    </index>
+    <index alias="category_key" name="category_key" primary="false" unique="false" type="BTREE">
+      <column key="category_key" length="" collation="A" null="false" />
+    </index>
+    <index alias="element_key" name="element_key" primary="false" unique="false" type="BTREE">
+      <column key="element_key" length="" collation="A" null="false" />
+    </index>
     
     <aggregate alias="Cars" class="Cars" local="mark_key" foreign="mark_key" cardinality="many" />
     <aggregate alias="Category" class="\Brevis\Model\Category" local="category_key" foreign="key" cardinality="one"  />
@@ -123,8 +144,10 @@
     <field key="hash" dbtype="varshar" phptype="string" precision="64" null="true"/>
     <field key="order" dbtype="int" phptype="integer" precision="10" null="false" attributes="unsigned" default="0"/>
     
-    <index alias="item_key" name="model_key" primary="false" unique="false" type="BTREE">
+    <index alias="item_id" name="item_id" primary="false" unique="false" type="BTREE">
       <column key="item_id" length="" collation="A" null="false" />
+    </index>
+    <index alias="item_key" name="item_key" primary="false" unique="false" type="BTREE">
       <column key="item_key" length="" collation="A" null="false" />
     </index>
     <aggregate alias="Item" class="\Brevis\Model\Item" local="item_id" foreign="id" cardinality="one" owner="foreign" />

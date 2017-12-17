@@ -64,6 +64,22 @@ class Element extends \Brevis\Model\Element
         ),
         'indexes' => 
         array (
+            'category_key' => 
+            array (
+                'alias' => 'category_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'category_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
             'key' => 
             array (
                 'alias' => 'key',

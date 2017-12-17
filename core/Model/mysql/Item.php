@@ -264,6 +264,86 @@ class Item extends \Brevis\Model\Item
                     ),
                 ),
             ),
+            'mark_key' => 
+            array (
+                'alias' => 'mark_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'mark_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
+            'model_key' => 
+            array (
+                'alias' => 'model_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'model_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
+            'year_key' => 
+            array (
+                'alias' => 'year_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'year_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
+            'category_key' => 
+            array (
+                'alias' => 'category_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'category_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
+            'element_key' => 
+            array (
+                'alias' => 'element_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'element_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
         ),
         'composites' => 
         array (
