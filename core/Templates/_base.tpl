@@ -53,7 +53,7 @@
             <ul class="header-contact">
               <li>
                 <span>Саратов</span>
-                <a href="tel:+79518857676" class="header-phone wow flash" data-wow-duration="2s" data-wow-iteration="1">+79518857676</a>
+                <a href="tel:+79518857676" class="header-phone _wow flash" data-wow-duration="2s" data-wow-iteration="1">+79518857676</a>
               </li>
               {*
               <li>
