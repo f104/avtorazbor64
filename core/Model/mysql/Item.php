@@ -344,6 +344,38 @@ class Item extends \Brevis\Model\Item
                     ),
                 ),
             ),
+            'remote_key' => 
+            array (
+                'alias' => 'remote_key',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'remote_key' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => true,
+                    ),
+                ),
+            ),
+            'remote_id' => 
+            array (
+                'alias' => 'remote_id',
+                'primary' => false,
+                'unique' => false,
+                'type' => 'BTREE',
+                'columns' => 
+                array (
+                    'remote_id' => 
+                    array (
+                        'length' => '',
+                        'collation' => 'A',
+                        'null' => false,
+                    ),
+                ),
+            ),
         ),
         'composites' => 
         array (
