@@ -5595,6 +5595,7 @@ ul.payments li.mir {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 .datatable-header .datatable-filters blockquote {
   border-color: #ddd;
@@ -6469,6 +6470,37 @@ fieldset[disabled] .invite-promo a.focus {
 .invite-promo a .badge {
   color: #05663B;
   background-color: #fff;
+}
+.toggle-column .toggle-column__toggler {
+  display: none;
+}
+@media (min-width: 768px) {
+  .toggle-column {
+    position: relative;
+    overflow: hidden;
+  }
+  .toggle-column .toggle-column__main {
+    transition: width 0.2s ease-in-out;
+  }
+  .toggle-column .toggle-column__alt {
+    transition: right 0.2s ease-in-out;
+    right: 0;
+  }
+  .toggle-column .toggle-column__toggler {
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: -10px;
+    background: #ccc;
+    width: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+  }
+  .toggle-column._toggled .toggle-column__main {
+    width: 100%;
+  }
 }
 .items-list {
   padding-left: 0;
