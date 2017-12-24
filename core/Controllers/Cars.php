@@ -719,7 +719,7 @@
         private function _sendEmail(\Brevis\Model\Order $order) {
             $emailUser = $this->core->xpdo->getObjectGraph('Brevis\Model\Sklad', ['Supplier' => ['User']], $order->sklad_id);
 
-            $additional_emails = 'avgmsk@inbox.ru,' . $emailUser->additional_emails;
+            $additional_emails = $emailUser->additional_emails;
 
             $emailUser = $emailUser->Supplier->User;
             $content = 'У вас новый заказ #' . $order->id . ' (' . $order->item_name . ').';
