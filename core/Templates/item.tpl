@@ -16,6 +16,7 @@
         <p>
           Состояние: {$item.condition_name}, износ {$item.condition}%
           {if $item.condition_comment}({$item.condition_comment}){/if}
+          <p class="text-danger">Внимание! Деталь с&nbsp;дефектом и&nbsp;продаётся со&nbsp;скидкой. Дополнительные фото и&nbsp;информация по&nbsp;запросу.</p>
         </p>
       {/if}
       {if $item.comment?}<p>{$item.comment | nl2br}</p>{/if}
