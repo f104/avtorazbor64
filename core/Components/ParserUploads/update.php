@@ -11,6 +11,8 @@
     use Brevis\Components\Checker\Checker as Checker;
 
     define('PROJECT_API_MODE', true);
+    ini_set('max_execution_time', 0);
+    set_time_limit(0);
 
     $base = dirname(dirname(dirname(dirname(__FILE__)))) . '/';
     require_once $base . 'index.php';
