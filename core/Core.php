@@ -407,7 +407,7 @@
             $c->innerJoin('Brevis\Model\Supplier', 'Supplier');
             $c->leftJoin('Brevis\Model\SupplierStatus', 'SupplierStatus', ['SupplierStatus.id = Supplier.status_id']);
             $c->where(array(
-                'locked' => 0, // не заблокирован
+//                'locked' => 0, // не заблокирован
                 'switchon' => 1, // включен
                 'Status.show' => 1, // статус склада участвует в выдаче
                 'SupplierStatus.show' => 1, // статус поставщика участвует в выдаче
