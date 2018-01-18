@@ -215,7 +215,7 @@ class Items extends Controller {
         
         $cols = [
             'name' => 
-                ['title' => $this->lang['item.name'], 'tpl' => '@INLINE <a href="'.$this->uri.'/view?id={$row.id}&'.  http_build_query($this->filters).'">{$row.name}</a>'],
+                ['title' => $this->lang['item.name'], 'tpl' => '@INLINE <a href="'.$this->uri.'/view?id={$row.id}&'.  http_build_query($this->filters).'">{$row.name}</a>&nbsp;<a href="item?id={$row.id}" target="_blank"><i class="fa fa-external-link"></i></a>'],
             'price' => 
                 ['title' => $this->lang['item.price']],
             'code' => [
