@@ -25,7 +25,7 @@ class Users extends Controller {
     private $_offset = 0;
     private $_total = 0;
     
-    public $allowedFilters = ['group_id', 'name', 'email', 'region_id'];
+    public $allowedFilters = ['group_id', 'name', 'email', 'region_id', 'balance'];
     public $allowedSort = ['name','group_name','email','active','blocked','lastlogin','balance'];
 
     public function __construct(\Brevis\Core $core) {
@@ -52,6 +52,9 @@ class Users extends Controller {
         }
         if (!empty($this->filters['email'])) {
             $this->where['email:LIKE'] = '%'.$this->filters['email'].'%';
+        }
+        if (!empty($this->filters['balance'])) {
+            $this->where['balance:!='] = 0;
         }
         $c->where($this->where);
         $this->_total = $this->core->xpdo->getCount('Brevis\Model\User', $c);
@@ -85,6 +88,7 @@ class Users extends Controller {
         $filters->input('name', ['placeholder' => $this->lang['filters_like_ph']])->addLabel($this->lang['user.name']);
         $filters->input('email', ['placeholder' => $this->lang['filters_like_ph']])->addLabel($this->lang['user.email']);
         $filters->select('region_id')->addLabel($this->lang['user.region'])->setSelectOptions($this->getRegions(1, true));
+        $filters->select('balance')->addLabel($this->lang['user.balance'])->setSelectOptions([1 => 'не нулевой']);
         $cols = [
             'name' => 
                 ['title' => $this->lang['user.name'], 'tpl' => '@INLINE <a href="'.$this->uri.'/view?id={$row.id}&'.http_build_query($this->filters).'">{$row.name}</a>'],
