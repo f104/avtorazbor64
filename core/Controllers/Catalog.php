@@ -837,6 +837,7 @@ class UpdateElement extends Catalog {
                             'key' => $key,
                             'name' => $name,
                             'category_key' => $category->key,
+                            'increase_category' => $increase,
                             'increase_category_id' => $increase,
                         ]);
                         if ($element->save()) {
@@ -861,6 +862,7 @@ class UpdateElement extends Catalog {
                             $this->message = $this->lang['catalog.name_error_element_key_incorrect'];
                         } else {
                             $element->set('name', $name);
+                            $element->set('increase_category', $increase);
                             $element->set('increase_category_id', $increase);
                             if ($element->save()) {
                                 $this->success = true;

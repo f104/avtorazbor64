@@ -769,7 +769,7 @@ class Replaceitem extends Itemview {
                     $element = $this->core->xpdo->getObject('Brevis\Model\Element', ['key' => $newitemArray['element_key']]);
                     $newitemArray['city_id'] = $this->sklads[$newitemArray['sklad_id']]['city_id'];
                     $newitemArray['region_id'] = $this->sklads[$newitemArray['sklad_id']]['region_id'];
-                    $newitemArray['increase_category'] = $element->increase_category;
+                    $newitemArray['increase_category'] = $element->increase_category_id;
                     
                     // снимаем с резерва старый товар
                     $olditem = $this->core->xpdo->getObject('Brevis\Model\Item', $order->item_id);

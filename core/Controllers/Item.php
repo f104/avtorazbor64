@@ -73,7 +73,7 @@ class Item extends Cars {
             $country = $sklad->getOne('Country');
             $item['country_iso'] = $country->iso;
             $item['region_id'] = $sklad->region_id;
-            $item['increase_category'] = $element->increase_category;
+            $item['increase_category'] = $element->increase_category_id;
             $this->core->calculatePrice($item, $this->core->authUser);
 //        }
         

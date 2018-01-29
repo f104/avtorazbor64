@@ -572,7 +572,7 @@
                     foreach ($rows as $item) {
                         if ($this->showPrice) {
                             // т.к. уже есть элементы, то сэкономим один leftJoin
-                            $item['increase_category'] = $this->getElement($item['element_key'])['increase_category'];
+                            $item['increase_category'] = $this->getElement($item['element_key'])['increase_category_id'];
                             $this->core->calculatePrice($item, $this->core->authUser);
 //                        $item['order_exist'] = $item['order_user_id'] == $this->core->authUser->id;
                         }
