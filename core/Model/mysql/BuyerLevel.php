@@ -31,7 +31,6 @@ class BuyerLevel extends \Brevis\Model\BuyerLevel
                 'dbtype' => 'int',
                 'phptype' => 'integer',
                 'precision' => '2',
-                'attributes' => 'unsigned',
                 'null' => false,
                 'default' => 10,
             ),

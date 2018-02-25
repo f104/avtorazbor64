@@ -9,7 +9,7 @@
         <div class="text-danger"></div>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" name="increase" min="0" value="{$item['increase']}" required>
+        <input type="number" class="form-control" name="increase" min="-99" max="99" value="{$item['increase']}" required>
         <div class="text-danger"></div>
       </div>
       <input type="hidden" name="id" value="{$item['id']}">

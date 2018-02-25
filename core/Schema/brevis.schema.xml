@@ -289,7 +289,7 @@
   
     <object class="BuyerLevel" table="buyer_levels" extends="xPDO\Om\xPDOSimpleObject">
         <field key="name" dbtype="varchar" phptype="string" precision="50" null="false" />
-        <field key="increase" dbtype="int" phptype="integer" precision="2" attributes="unsigned" null="false" default="10" />
+        <field key="increase" dbtype="int" phptype="integer" precision="2" null="false" default="10" />
         <field key="allow_remove" dbtype="tinyint" phptype="integer" precision="1" attributes="unsigned" null="false" default="1" />		
         <index alias="name" name="name" primary="false" unique="true" type="BTREE">
             <column key="name" length="" collation="A" null="false" />
