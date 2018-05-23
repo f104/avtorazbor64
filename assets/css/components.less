@@ -3,6 +3,17 @@
     .text-uppercase;
     font-size: 12px;
 }
+@media (max-width: @screen-sm) {
+    .breadcrumb {
+        li {
+            display: block;
+            margin-bottom: 10px;
+        }
+        > li + li:before {
+            content: none;
+        }
+    }
+}
 
 ul.payments {
     .list-inline;
