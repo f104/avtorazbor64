@@ -382,42 +382,49 @@ class Status extends Orders {
                 if ($allow) {
     //                $orderStatus = $order->getOne('Status'); // нельзя, не сохраняется тогда $order, какая-то связь...
     //                $orderStatus = $this->core->xpdo->getObject('Brevis\Model\OrderStatus', $order->status_id);
-                    if ($status->order < 10) {
-                        $order->refundPaid('Отмена заказа');
-                    }
-                    // некоторые статусы изменять нельзя
-    //                if ($orderStatus->fixed != 1) {
-                        $loggerOld = $order->toArray();
-                        $order->set('status_id', $status->id);
-                        $order->set('updatedon', date('Y-m-d H:i:s',  time()));
-                        if ($order->save()) {
-                            $this->success = true;
-                            $this->message = 'Сохранено';
-                            if ($status->allow_payment === 1) {
-                                if (!$order->isPaid()) {
-                                    // инициируем процесс оплаты
-                                    if ($withdraw = $order->runWithdraw()) {
-                                      $status = $withdraw;
-        //                              $this->message = $status->id;
-                                    }
-                                } else {
-                                    // повторный запрос "ожидает оплаты"
-                                    $status = $this->core->xpdo->getObject('Brevis\Model\OrderStatus', $order->paidStatus);
-                                    $order->set('status_id', $status->id);
-                                    $order->save();
-                                }
-                             }
-                            $data['new_status_name'] = $status->name;
-                            $order->notifyBuyer($this);
-                            if ($this->buyer and $status->id == 2) {
-                                $order->notifySupplierCancelled($this);
-                                $data['remove_payment_form'] = true;
-                            }
-                            $this->eventLogger->update($order->id, $loggerOld, $order->toArray());
+                    if ($status->id == 12 and !$order->isPaid()) {
+                        // попытка "выдать" неоплаченный заказ
+                        $this->message = 'Нельзя "выдать" неоплаченный заказ';
+                    } else {
+                    
+                        if ($status->order < 10) {
+                            $order->refundPaid('Отмена заказа');
                         }
-    //                } else {
-    //                    $this->message = $this->lang['order.status_error'];
-    //                }
+                        // некоторые статусы изменять нельзя
+        //                if ($orderStatus->fixed != 1) {
+                            $loggerOld = $order->toArray();
+                            $order->set('status_id', $status->id);
+                            $order->set('updatedon', date('Y-m-d H:i:s',  time()));
+                            if ($order->save()) {
+                                $this->success = true;
+                                $this->message = 'Сохранено';
+                                if ($status->allow_payment === 1) {
+                                    if (!$order->isPaid()) {
+                                        // инициируем процесс оплаты
+                                        if ($withdraw = $order->runWithdraw()) {
+                                          $status = $withdraw;
+            //                              $this->message = $status->id;
+                                        }
+                                    } else {
+                                        // повторный запрос "ожидает оплаты"
+                                        $status = $this->core->xpdo->getObject('Brevis\Model\OrderStatus', $order->paidStatus);
+                                        $order->set('status_id', $status->id);
+                                        $order->save();
+                                    }
+                                 }
+                                $data['new_status_name'] = $status->name;
+                                $order->notifyBuyer($this);
+                                if ($this->buyer and $status->id == 2) {
+                                    $order->notifySupplierCancelled($this);
+                                    $data['remove_payment_form'] = true;
+                                }
+                                $this->eventLogger->update($order->id, $loggerOld, $order->toArray());
+                            }
+        //                } else {
+        //                    $this->message = $this->lang['order.status_error'];
+        //                }
+                        
+                    }
                 } else {
                     $this->message = $this->lang['order.access_denied'];
                 }
