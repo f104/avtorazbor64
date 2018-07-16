@@ -34,7 +34,7 @@ class Fees extends Controller {
     private $_offset = 0;
     private $_total = 0;
     
-    public $allowedFilters = ['type_id', 'order_id'];
+    public $allowedFilters = ['type_id', 'order_id', 'user_id'];
     public $allowedSort = ['user_name','timestamp','type_name','order_id', 'sum'];
     public $defaultSort = 'timestamp';
     public $sortdir = 'DESC';
