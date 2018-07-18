@@ -245,6 +245,10 @@
                 return $number ? $amount . ' ' . $text : $text;
             };
             
+            $modifiers['dump'] = function ($var) {
+                return print_r($var, true);
+            };
+            
             return $modifiers;
         }
 
