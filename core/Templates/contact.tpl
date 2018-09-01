@@ -15,7 +15,7 @@
     <div class="panel-group">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title"><span class="dotted js-map-geo" data-geo="51.456740,45.910199" data-name="ул. Азина, 50">Склад</span></h4>
+          <h4 class="panel-title"><span class="dotted js-map-geo" data-geo="51.456740,45.910199" data-name="ул. Азина, 50">Склад</span> (все запчасти здесь)</h4>
         </div>
         <div class="panel-collapse">
           <div class="panel-body">
@@ -29,7 +29,7 @@
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title"><span class="dotted js-map-geo" data-geo="51.574705,46.025772" data-name="ул. Танкистов 90 А">Представительство</span></h4>
+          <h4 class="panel-title"><span class="dotted js-map-geo" data-geo="51.574705,46.025772" data-name="ул. Танкистов 90 А">Представительство</span> (деталей нет, закажите перемещение)</h4>
         </div>
         <div class="panel-collapse">
           <div class="panel-body">
