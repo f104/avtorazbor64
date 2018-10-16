@@ -605,7 +605,7 @@
             $formAuth->template = ''
                     . '<form {$options}>'
                     . '<fieldset><legend>Авторизация</legend>{$fields} {$buttons} </fieldset>'
-                    . '<br><br><div class="alert alert-info">Нет учетной записи? <a class="text-nowrap" href="user">Зарегистрируйтесь.</a><br>Если вы хотите стать поставщиком, пожалуйста, <a class="text-nowrap" href="user/registersupplier">пройдите по ссылке</a>.</div>'
+                    . '<br><br><div class="alert alert-info">Нет учетной записи? <a class="text-nowrap" href="user">Зарегистрируйтесь.</a></div>'
                     . $this->makeHauthLoginTpl()
                     . '</form>';
             $formAuth->input('email', ['type' => 'email', 'required'])->addLabel('E-mail');
