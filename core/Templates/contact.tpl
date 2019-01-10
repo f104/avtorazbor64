@@ -8,8 +8,7 @@
   <div class="col-md-6">
 
     <div class="panel panel-info">
-      <div class="panel-body">E-mail: <a href="mailto:razbor.64@mail.ru">razbor.64@mail.ru</a><br>
-        E-mail директора: <a href="mailto:onlinezakazsar@mail.ru">onlinezakazsar@mail.ru</a></div>
+      <div class="panel-body">E-mail: <a href="mailto:razbor.64@mail.ru">razbor.64@mail.ru</a></div>
     </div>
 
     <div class="panel-group">

@@ -23,8 +23,12 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">Пополнить</button>
                     <br><br>
-                    <p>Вы будете перенаправлены на сайт платежной системы Robokassa.<br> 
-                        Комиссия за перичисление средств составляет {$.const.PROJECT_MERCHANT_PERCENT}% от суммы платежа.</p>
+                    <p>Вы будете перенаправлены на сайт платежной системы Robokassa.
+                        {if $.const.PROJECT_MERCHANT_PERCENT?}
+                            <br> 
+                            Комиссия за перичисление средств составляет {$.const.PROJECT_MERCHANT_PERCENT}% от суммы платежа.
+                        {/if}
+                    </p>
                     <p class="text-danger">Внимание! Если вас просят оплатить заказ или пополнить баланс переводом на карту — 
                         не делайте этого, это мошенники.</p>
                 </form>
